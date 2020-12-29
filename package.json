@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prettify": "prettier --write src/**/*.ts"
+    "prettify": "prettier --write src/**/*.ts",
+    "build": "tsc -p .",
+    "start": "node build/index",
+    "build:run": "npm run build && npm start"
   },
   "repository": {
     "type": "git",
