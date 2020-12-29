@@ -5,7 +5,7 @@ const lambda = new AWS.Lambda({
  endpoint: "https://lambda.us-east-2.amazonaws.com"
 });
 
-export const ping = async (): Promise<{ headers: any; body: any }> => {
+export const ping = async (): Promise<{ body: any }> => {
  try {
   const pingInvocation = await lambda
    .invoke({ FunctionName: "leadwallet-multisender-api-ping" })
@@ -15,7 +15,6 @@ export const ping = async (): Promise<{ headers: any; body: any }> => {
   // console.log(pingInvocation.StatusCode);
   const payload = { ...JSON.parse(pingInvocation.Payload.toString()) };
   return Promise.resolve({
-   headers: payload.headers,
    body: payload.body
   });
  } catch (error) {
@@ -23,9 +22,7 @@ export const ping = async (): Promise<{ headers: any; body: any }> => {
  }
 };
 
-export const executeTx = async (
- body: any
-): Promise<{ headers: any; body: any }> => {
+export const executeTx = async (body: any): Promise<{ body: any }> => {
  try {
   const executeTxInvocation = await lambda
    .invoke({
@@ -39,7 +36,6 @@ export const executeTx = async (
   // console.log(executeTxInvocation.StatusCode);
   const payload = { ...JSON.parse(executeTxInvocation.Payload.toString()) };
   return Promise.resolve({
-   headers: payload.headers,
    body: payload.body
   });
  } catch (error) {
@@ -47,9 +43,7 @@ export const executeTx = async (
  }
 };
 
-export const getFee = async (
- body: any
-): Promise<{ headers: any; body: any }> => {
+export const getFee = async (body: any): Promise<{ body: any }> => {
  try {
   const feeInvocation = await lambda
    .invoke({
@@ -61,7 +55,6 @@ export const getFee = async (
 
   const payload = { ...JSON.parse(feeInvocation.Payload.toString()) };
   return Promise.resolve({
-   headers: payload.headers,
    body: payload.body
   });
  } catch (error) {

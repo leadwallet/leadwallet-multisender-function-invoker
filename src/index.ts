@@ -1,21 +1,9 @@
 import express from "express";
-import { ping, executeTx } from "./lambdas";
+import config from "./config";
 
-const app: express.Application = express();
+let app: express.Application = express();
 const port = parseInt(process.env.PORT || "9600");
 
-app.use(express.json());
-
-app.get("/ping", async (req, res) => {
- const response = await ping();
- console.log(response);
- res.status(200).json("Done");
-});
-
-app.post("/executeTx", async (req, res) => {
- const response = await executeTx(req.body);
- console.log(response);
- res.status(200).json("Done");
-});
+app = config(app);
 
 app.listen(port, () => console.log(`App is running on ${port}`));
