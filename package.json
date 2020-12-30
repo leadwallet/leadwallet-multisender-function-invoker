@@ -6,8 +6,7 @@
   "scripts": {
     "prettify": "prettier --write src/**/*.ts",
     "build": "tsc -p .",
-    "start": "node build/index",
-    "postinstall": "npm run build"
+    "start": "node build/index"
   },
   "repository": {
     "type": "git",
