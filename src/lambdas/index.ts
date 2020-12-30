@@ -2,7 +2,11 @@ import AWS from "aws-sdk";
 
 const lambda = new AWS.Lambda({
  region: "us-east-2",
- endpoint: "https://lambda.us-east-2.amazonaws.com"
+ endpoint: "https://lambda.us-east-2.amazonaws.com",
+ credentials: {
+  accessKeyId: process.env.ACCESS_KEY_ID,
+  secretAccessKey: process.env.SECRET_ACCESS_KEY
+ }
 });
 
 export const ping = async (): Promise<{ body: any }> => {
